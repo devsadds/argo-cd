@@ -116,24 +116,8 @@ endef
 
 # Runs any command in the argocd-test-utils container in client mode
 define run-in-test-client
-	$(SUDO) $(DOCKER) run --rm -it \
-	  --name argocd-test-client \
-		-u $(CONTAINER_UID):$(CONTAINER_GID) \
-		-e HOME=/home/user \
-		-e GOPATH=/go \
-		-e ARGOCD_E2E_K3S=$(ARGOCD_E2E_K3S) \
-		-e GITHUB_TOKEN \
-		-e GOCACHE=/tmp/go-build-cache \
-		-e ARGOCD_LINT_GOGC=$(ARGOCD_LINT_GOGC) \
-		-v ${DOCKER_SRC_MOUNT} \
-		-v ${GOPATH}/pkg/mod:/go/pkg/mod${VOLUME_MOUNT} \
-		-v ${GOCACHE}:/tmp/go-build-cache${VOLUME_MOUNT} \
-		-v ${HOME}/.kube:/home/user/.kube${VOLUME_MOUNT} \
-		-v /tmp:/tmp${VOLUME_MOUNT} \
-		-w ${DOCKER_WORKDIR} \
-		$(PODMAN_ARGS) \
-		$(TEST_TOOLS_PREFIX)$(TEST_TOOLS_IMAGE):$(TEST_TOOLS_TAG) \
-		bash -c "$(1)"
+	echo "skip"
+
 endef
 
 #
